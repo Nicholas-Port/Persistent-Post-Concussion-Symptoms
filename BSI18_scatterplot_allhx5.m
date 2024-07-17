@@ -127,10 +127,10 @@ y12=BSI18negdelay( ~isnan(RTPnegdelay) & ~isnan(BSI18negdelay) );
 [r12, p12]=corr( log10(x12+1), log10(y12+1) );
 %[r14, p14]=corr( log10(x14+1), log10(y14+1) );
 
-text(60,20, ['-mhHx  ' num2str(length(x2)) '  r=' num2str(r2, '%3.2f')  ' p=' num2str(p2,'%4.3f') ], 'FontName', 'Courier' );
-text(60,17, ['-ladHx ' num2str(length(x4)) '  r=' num2str(r4, '%3.2f')  ' p=' num2str(p4,'%4.3f') ], 'FontName', 'Courier' );
-text(60,14, ['-conHx ' num2str(length(x6)) '  r=' num2str(r6, '%3.2f')  ' p=' num2str(p6,'%4.3f') ], 'FontName', 'Courier' );
-text(60,11, ['-migHx ' num2str(length(x8)) '  r=' num2str(r8, '%3.2f')  ' p=' num2str(p8,'%4.3f') ], 'FontName', 'Courier' );
+text(60,20, ['-mhHx  ' num2str(length(x2))  '  r=' num2str(r2, '%3.2f')  ' p=' num2str(p2,'%4.3f') ], 'FontName', 'Courier' );
+text(60,17, ['-ladHx ' num2str(length(x4))  '  r=' num2str(r4, '%3.2f')  ' p=' num2str(p4,'%4.3f') ], 'FontName', 'Courier' );
+text(60,14, ['-conHx ' num2str(length(x6))  '  r=' num2str(r6, '%3.2f')  ' p=' num2str(p6,'%4.3f') ], 'FontName', 'Courier' );
+text(60,11, ['-migHx ' num2str(length(x8))  '  r=' num2str(r8, '%3.2f')  ' p=' num2str(p8,'%4.3f') ], 'FontName', 'Courier' );
 text(60,8,  ['-loc   ' num2str(length(x10)) '  r=' num2str(r10,'%3.2f')  ' p=' num2str(p10,'%4.3f')], 'FontName', 'Courier' );
 text(60,5,  ['-delay ' num2str(length(x12)) '  r=' num2str(r12,'%3.2f')  ' p=' num2str(p12,'%4.3f')], 'FontName', 'Courier' );
 %text(60,2,  ['male   ' num2str(length(x14)) '  r=' num2str(r14,'%3.2f')  ' p=' num2str(p14,'%4.3f')], 'FontName', 'Courier' );
@@ -338,8 +338,8 @@ RTPnegloc   =  T4S.time_t_RTP( loc_neg );
 RTPposdelay   =  T4S.time_t_RTP( delay_pos );
 RTPnegdelay   =  T4S.time_t_RTP( delay_neg );
 
-RTPfemale   =  T4S.time_t_RTP( female );
-RTPmale  =  T4S.time_t_RTP( male );
+RTPfemale =  T4S.time_t_RTP( female );
+RTPmale   =  T4S.time_t_RTP( male   );
 
 
 %BSI18poscon =  b_total(       con_pos );
@@ -363,7 +363,7 @@ SCATposdelay =  scattotal(       delay_pos );
 SCATnegdelay =  scattotal(       delay_neg );
 
 SCATfemale =  scattotal(       female );
-SCATmale =  scattotal(       male     );
+SCATmale   =  scattotal(       male   );
 
 SCATposloc =  scattotal(       loc_pos );
 SCATnegloc =  scattotal(       loc_neg );
@@ -371,8 +371,11 @@ SCATnegloc =  scattotal(       loc_neg );
 SCATposmh =  scattotal(       mh_pos );
 SCATnegmh =  scattotal(       mh_neg );
 
-SCATneg = scattotal (all_neg2 );
+SCATneg = scattotal( all_neg2 );
 SCATpos = scattotal( all_pos2 );
+
+
+
 
 
 ha = axes;
@@ -380,7 +383,7 @@ nlp_axes_prep(ha);
 hold on
 set(gca,'Position',[4.9 7.5 3 3] ); % gca = graphical current axes % left bottom width height
 set(gca,'FontSize', 12           );
-set(gca,'xlim',      [-5 500]  );
+set(gca,'xlim',      [-5 500]    );
 %set(gca,'ylim',      [-2 50]    );
 %set(gca,'xscale','log');
 %set(gca,'yscale','log');
@@ -406,7 +409,7 @@ x10=RTPnegloc(   ~isnan(RTPnegloc) & ~isnan(SCATnegloc) );
 y10=SCATnegloc(  ~isnan(RTPnegloc) & ~isnan(SCATnegloc) );
 
 x12=RTPnegdelay(   ~isnan(RTPnegdelay) & ~isnan(SCATnegdelay) );
-y12=SCATnegdelay( ~isnan(RTPnegdelay) & ~isnan(SCATnegdelay) );
+y12=SCATnegdelay(  ~isnan(RTPnegdelay) & ~isnan(SCATnegdelay) );
 
 %x14=RTPmale(   ~isnan(RTPmale) & ~isnan(SCATmale) );
 %y14=SCATmale( ~isnan(RTPmale) & ~isnan(SCATmale) );
@@ -420,13 +423,13 @@ y12=SCATnegdelay( ~isnan(RTPnegdelay) & ~isnan(SCATnegdelay) );
 %[r14, p14]=corr(x14,y14);
 
 
- text(150,40,['-mhHx  ' num2str(length(x2)) ' r=' p_n_str(r2)  ' p=',num2str(p2, '%4.3f') ], 'FontName', 'Courier' );
- text(150,35,['-ladHx ' num2str(length(x4)) ' r=' p_n_str(r4)  ' p=',num2str(p4, '%4.3f') ], 'FontName', 'Courier' );
- text(150,30,['-conHx ' num2str(length(x6)) ' r=' p_n_str(r6)  ' p=',num2str(p6, '%4.3f') ], 'FontName', 'Courier' );
- text(150,25,['-migHx ' num2str(length(x8)) ' r=' p_n_str(r8)  ' p=',num2str(p8, '%4.3f') ], 'FontName', 'Courier' );
- text(150,20,['-loc   ' num2str(length(x10)) ' r=' p_n_str(r10) ' p=',num2str(p10,'%4.3f') ], 'FontName', 'Courier' );
+ text(150,40,['-mhHx  ' num2str(length(x2))  ' r=' p_n_str(r2)   ' p=',num2str(p2, '%4.3f') ], 'FontName', 'Courier' );
+ text(150,35,['-ladHx ' num2str(length(x4))  ' r=' p_n_str(r4)   ' p=',num2str(p4, '%4.3f') ], 'FontName', 'Courier' );
+ text(150,30,['-conHx ' num2str(length(x6))  ' r=' p_n_str(r6)   ' p=',num2str(p6, '%4.3f') ], 'FontName', 'Courier' );
+ text(150,25,['-migHx ' num2str(length(x8))  ' r=' p_n_str(r8)   ' p=',num2str(p8, '%4.3f') ], 'FontName', 'Courier' );
+ text(150,20,['-loc   ' num2str(length(x10)) ' r=' p_n_str(r10)  ' p=',num2str(p10,'%4.3f') ], 'FontName', 'Courier' );
  text(150,15,['-delay ' num2str(length(x12)) ' r=' p_n_str(r12)  ' p=' num2str(p12,'%4.3f')], 'FontName', 'Courier' );
-%text(150,10, ['male   ' num2str(length(x14)) '  r=' p_n_str(r14)  ' p=' num2str(p14,'%4.3f')], 'FontName', 'Courier' );
+%text(150,10,['male   ' num2str(length(x14)) '  r=' p_n_str(r14)  ' p=' num2str(p14,'%4.3f')], 'FontName', 'Courier' );
 
  xlabel({'Time to RTP','(in days/-HX)'});
  ylabel('SCAT Total Score');
@@ -516,7 +519,7 @@ xlabel({'Time to RTP','(in days/+HX)'});
 ylabel('SCAT Total Score');
  
  
- 
+
 
  
 hold on
@@ -544,8 +547,24 @@ set(hs4,'CData',[.0 .95 0],'MarkerEdgeAlpha',0.6 );
 set(hs5,'CData',[.25 .5 0],'MarkerEdgeAlpha',0.6 );
 set(hs6,'CData',[.75 1 .5],'MarkerEdgeAlpha',0.6 );
 set(hs7,'CData',[0 0 .75], 'MarkerEdgeAlpha',0.6 );
-set(hs8,'CData',[0 .5 1], 'MarkerEdgeAlpha',0.6   );
+set(hs8,'CData',[0 .5 1],  'MarkerEdgeAlpha',0.6   );
 %set(hs9,'CData',[.5 0 .75], 'MarkerEdgeAlpha',0.6);
 % 
 
+text (-10,-80,'Rooks et al. Suppl. Fig. 5')
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% fini

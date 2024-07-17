@@ -26,17 +26,17 @@ CIFcn = @(x,p)prctile(x,abs([0,100]-(100-p)/2));
 
 
 READ_RAW_DATA = 0;
-BUILD_TABLES  = 0;
+BUILD_TABLES  = 1;
 
 % First read in the raw data
 
 if READ_RAW_DATA == 1
    tic
-   read_in_BSI_v6 %b %v1, v2, v3, 
+   read_in_BSI_v7 %6 %b %v1, v2, v3, 
    
    % NOTE
    % To save the full_care_big_data structure, cut and paste this:
-   % save full_care_big_data6 sub -v7.3
+   % save full_care_big_data8 sub -v7.3
    
    toc
    
@@ -47,24 +47,20 @@ else
    
    % Data extraction
    if BUILD_TABLES == 1
-      load('../CARE_20/full_care_big_data6')  % The full datafile is big (8.3 GB)
+      load('../CARE_20/full_care_big_data8')  % The full datafile is big (8.3 GB)
 
-      keyboard
 
-      SCAT_data_extract_v4
+      SCAT_data_extract_v6
       BSI18_data_extract_v13
-      BSI18_fig1_counts_v1
-      
-      
-
+      BSI18_fig1_counts_v1         
   
       
       keyboard
       
-      %save base_table3 T2 T4 T6    % Save this - type in mannually
-      %save base_table12 T2 T4 T2S T4S
+
+      %save base_table14 T2 T4 T2S T4S % Save this - type in mannually
    else
-     load('base_table12');
+     load('base_table14');
    end
    
    
@@ -150,7 +146,7 @@ BSI18_descript_con_hx_injury1
 % BSI18_descript_allhx_RTP
 
 % % 2x2 PCS tables
-BSI18_descript_tables_v8 %9
+BSI18_descript_tables_v10 %9 %8
 
 % % RTP vs BSI/SCAT Scatter Plot
 BSI18_scatterplot_allhx5
